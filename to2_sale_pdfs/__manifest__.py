@@ -21,6 +21,8 @@ Módulo encargado de redefinir views de Sales para las pruebas con la generació
     'depends': ['sale'],
 
     # always loaded
-    'data': [],
+    'data': [
+        'views/to2_sale_order_view.xml',
+    ],
 }
 

@@ -1,4 +1,4 @@
-import models
+from odoo import models
 from pypdf import PdfReader, PdfWriter, Transformation
 from reportlab.pdfgen import canvas
 from io import BytesIO

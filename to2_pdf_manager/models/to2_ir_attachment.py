@@ -1,5 +1,5 @@
 from odoo import models
 
-class To2IrAttachment(models.Model):
-    _inherit = 'ir.attachment'
+class IrAttachment(models.Model):
+    _name = 'ir.attachment'
     _inherit = ['ir.attachment', 'res.document.sign']

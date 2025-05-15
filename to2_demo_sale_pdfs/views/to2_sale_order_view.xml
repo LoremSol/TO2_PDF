@@ -5,30 +5,22 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form" />
             <field name="arch" type="xml">
-
-                <xpath expr="//button[@name='action_cancel']" position="after">
-                    <button
-                        name="save_report_as_attachment"
-                        type="object"
-                        string="Print and Save Order Report"
-                        class="btn-primary" />
-                </xpath>
-
                 <xpath expr="//page[@name='customer_signature']" position="after">
                     <page groups="base.group_no_one" string="Attached Documents"
                         name="attached_documents">
-                        <group>
-                            <field name="attachment_ids" widget="attachment" options="{'multiple': true}" >
+                        <div>
+                            <field name="document_ids" options="{'multiple': true}" nolabel="1"
+                                style="width: 100%;">
                                 <tree editable="bottom">
                                     <field name="name" string="Document Name" />
-                                    <field name="mimetype" />
-                                    <field name="description" string="Description" />
+                                    <field name="attachment_id" string="Attachment" />
                                     <button
-                                        name="" type="object"
+                                        name="action_convert_attachment" type="object"
                                         string="Print and Save Order Report" class="btn-primary" />
+                                        
                                 </tree>
                             </field>
-                        </group>
+                        </div>
                     </page>
                 </xpath>
             </field>

@@ -11,8 +11,7 @@
             "program": "C:\\Users\\minip\\OneDrive\\Desktop\\TiOdoo\\Odoo\\odoo16\\odoo-bin",
             "args": [
                 "--config=C:\\Users\\minip\\OneDrive\\Desktop\\TiOdoo\\Proyectos\\v16\\TO2_PDF\\odoo16.conf",
-                "--update=to2_sale_pdfs",
-                "--update=to2_pdf_manager",
+                "--update=to2_pdf_manager,to2_sale_pdfs",
             ],
             "console": "integratedTerminal",
         }

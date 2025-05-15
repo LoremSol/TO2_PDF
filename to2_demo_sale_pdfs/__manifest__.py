@@ -18,10 +18,11 @@ Módulo encargado de redefinir views de Sales para las pruebas con la generació
     'version': '16.0.0.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale'],
+    'depends': ['sale', 'to2_pdf_manager'],
 
     # always loaded
     'data': [
+        'security/ir.model.access.csv',
         'views/to2_sale_order_view.xml',
     ],
 }

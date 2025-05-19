@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+
+        <!-- Reporte para to2_sale_pdfs_template_1 -->
+        <record id="report_to2_sale_pdfs_template_1" model="ir.actions.report">
+            <field name="name">To2 Sale PDFs Template 1</field>
+            <field name="model">sale.order</field> <!-- Cambia esto por el modelo que uses -->
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">to2_sale_pdfs.to2_sale_pdfs_template_1</field> <!-- Nombre del template -->
+            <field name="print_report_name">'to2_template_1_' + object.name</field>
+        </record>
+
+        <!-- Reporte para to2_sale_pdfs_template_2 (footer) -->
+        <record id="report_to2_sale_pdfs_template_2" model="ir.actions.report">
+            <field name="name">To2 Sale PDFs Template 2 (Footer)</field>
+            <field name="model">sale.order</field> <!-- Cambia esto por el modelo que uses -->
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">to2_sale_pdfs.to2_sale_pdfs_template_2</field> <!-- Nombre del template -->
+            <field name="print_report_name">'to2_template_2_footer_' + object.name</field>
+        </record>
+
+        <!-- Reporte para to2_sale_pdfs_template_3 -->
+        <record id="report_to2_sale_pdfs_template_3" model="ir.actions.report">
+            <field name="name">To2 Sale PDFs Template 3</field>
+            <field name="model">sale.order</field> <!-- Cambia esto por el modelo que uses -->
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">to2_sale_pdfs.to2_sale_pdfs_template_3</field> <!-- Nombre del template -->
+            <field name="print_report_name">'to2_template_3_' + object.name</field>
+        </record>
+
+    </data>
+</odoo>

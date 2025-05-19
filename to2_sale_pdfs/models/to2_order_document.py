@@ -21,7 +21,12 @@ class To2OrderDocument(models.Model):
         ondelete='cascade'
     )
 
+    template_id = fields.Selection([
+        ('to2_sale_pdfs_template_1', 'Plantilla 1'),
+        ('to2_sale_pdfs_template_2', 'Plantilla 2'),
+        ('to2_sale_pdfs_template_3', 'Plantilla 3'),
+    ], string='Footer Template')
 
     def action_convert_attachment(self):
 
-        self.attachment_id.pdf_resize_and_footed()
+        self.attachment_id.pdf_resize_and_footed(self.template_id)

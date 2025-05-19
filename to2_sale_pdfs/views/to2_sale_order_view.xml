@@ -11,9 +11,10 @@
                         <div>
                             <field name="document_ids" options="{'multiple': true}" nolabel="1"
                                 style="width: 100%;">
-                                <tree editable="bottom">
+                                <tree editable="inline">
                                     <field name="name" string="Document Name" />
                                     <field name="attachment_id" string="Attachment" />
+                                    <field name="template_id" string="Footer Template" />
                                     <button
                                         name="action_convert_attachment" type="object"
                                         string="Print and Save Order Report" class="btn-primary" />

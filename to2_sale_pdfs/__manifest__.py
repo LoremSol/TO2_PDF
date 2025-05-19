@@ -23,6 +23,8 @@ Módulo encargado de redefinir views de Sales para las pruebas con la generació
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'reports/order_document_templates.xml',
+        'reports/to2_pdf_footer_template_reports.xml',
         'views/to2_sale_order_view.xml',
     ],
 }

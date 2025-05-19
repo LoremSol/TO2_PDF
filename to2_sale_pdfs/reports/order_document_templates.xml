@@ -1,0 +1,78 @@
+<odoo>
+    <template id="to2_sale_pdfs_template_1">
+        <t t-call="web.basic_layout">
+            <style>
+                * {background-color: red; color: black;}
+            </style>
+            <div class="page" style="height:80pt; padding: 0; margin: 0; width: 100%">
+                <div
+                    style="font-size: 11px; line-height: 1.4; display: flex;">
+
+                    <!-- Bloque firma -->
+                    <div
+                        style="width: 45%; border: 1px solid #ccc; height: 80px; padding: 5px; margin-right: 10px;">
+                        <p>TEST TEMPLATE 1</p>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="to2_sale_pdfs_template_2">
+
+        <t t-call="web.basic_layout">
+            <div class="page" style="height:200pt; padding: 0; margin: 0;">
+                <div
+                    style="font-size: 11px; line-height: 1.4; display: flex;">
+
+                    <table style="width: 100%; border-collapse: collapse; height: 100%">
+                        <tr>
+                            <!-- Primera columna compuesta -->
+                            <td style="width: 55%; vertical-align: top;">
+
+                                <table style="width: 100%; height:100%; border-collapse: collapse;">
+                                    <tr>
+                                        <!-- Tres campos en una fila -->
+                                        <td
+                                            style="width: 32%; border: 1px solid #ccc; padding: 4px;">
+                                            <p style="margin: 0;">Fecha:</p>
+                                        </td>
+                                        <td
+                                            style="width: 32%; border: 1px solid #ccc; padding: 4px;">
+                                            <p style="margin: 0;">Pedido nº:</p>
+                                        </td>
+                                        <td
+                                            style="width: 32%; border: 1px solid #ccc; padding: 4px;">
+                                            <p style="margin: 0;">Importe total:</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <!-- Campo responsable en fila abajo, con borde superior -->
+                                        <td colspan="3" 
+                                            style="border: 1px solid #000; padding-top: 4px; text-align: center;">
+                                            <p style="margin: 0;">Responsable: Juan Pérez</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                            <!-- Segunda columna: campo firma -->
+                            <td
+                                style="width: 45%; border: 1px solid #ccc; height: 80px; padding: 5px; vertical-align: top;">
+                                <p style="margin: 0;">Firma del cliente:</p>
+                                <div style="height: 60px;"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="to2_sale_pdfs_template_3">
+        <div>
+            <p>Contenido de la plantilla 3</p>
+        </div>
+    </template>
+
+</odoo>

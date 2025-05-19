@@ -4,13 +4,13 @@ from odoo import models
 class IrAttachment(models.Model):
     _inherit = 'ir.attachment'
     
-    def pdf_resize_and_footed(self):
+    def pdf_resize_and_footed(self, template_id):
         # Llama al método de to2_pdf_manager
         manager = self.env['res.document.sign']
         for attachment in self:
             # Aseguramos que attachment.datas es decodificado antes de pasarlo
             pdf_data = base64.b64decode(attachment.datas)
-            signed_pdf = manager.scale_pdf_content(pdf_data)
+            signed_pdf = manager.scale_pdf_content(pdf_data, template_id)
             
             self.env['ir.attachment'].create({
                 'name': f"{attachment.name}_signed.pdf",

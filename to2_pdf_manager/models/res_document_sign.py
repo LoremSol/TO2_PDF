@@ -13,16 +13,9 @@ class To2PdfManagerMixin(models.AbstractModel):
     A4_HEIGHT = 841.890
     SCALE_FACTOR_X = 0.95  # 95%
     SCALE_FACTOR_Y = 0.90  # 90%
-    FOOTER_HEIGHT = A4_HEIGHT * 0.10  # El 10% de la página
-    FOOTER_TEXT = "Firma: Lorenzo Gómez - Empresa TiOdoo"  # Personaliza este texto
 
-    # Método que crea y añade el footer
+    # Método que crea el footer a partir de las templates
     def create_footer(self, template_id):
-        """
-        Versión para diagnosticar problemas de renderizado del template
-        """
-        import logging
-        _logger = logging.getLogger(__name__)
 
         # 1. Intentar renderizar el template como HTML primero para verificar contenido
         try:
@@ -81,7 +74,7 @@ class To2PdfManagerMixin(models.AbstractModel):
 
             # Centrado horizontal y alineado arriba verticalmente
             translate_x = (self.A4_WIDTH - new_width) / 2
-            translate_y = self.A4_HEIGHT - new_height  # Deja espacio para el footer
+            translate_y = self.A4_HEIGHT * 0.12  # Deja espacio para el footer
 
             # Escalar y trasladar el contenido
             transformation = (
@@ -93,16 +86,22 @@ class To2PdfManagerMixin(models.AbstractModel):
 
             # Crear una nueva página A4 en blanco
             new_page = writer.add_blank_page(width=self.A4_WIDTH, height=self.A4_HEIGHT)
+
+            # Calculamos la posición del report inicial
+            ty = -(self.A4_HEIGHT * 0.3)
+            #new_page.merge_translated_page(page, tx=0, ty=ty)
             new_page.merge_page(page)
+
+            #new_page.merge_page(page)
 
             # Añadir el footer ya renderizado
             footer_width = float(footer_page.mediabox.width)
             footer_height = float(footer_page.mediabox.height)
 
-            # posición X centrada horizontalmente
+            # Calculamos la posición del footer
+            ty = -(self.A4_HEIGHT * 0.7)
             tx = (self.A4_WIDTH - footer_width) / 2
-            # posición Y justo en la base de la página (o ajusta con un margen)
-            ty = -600  # o un pequeño margen, ej: 10
+            #ty = -610
             new_page.merge_translated_page(footer_page, tx=tx, ty=ty)
 
 

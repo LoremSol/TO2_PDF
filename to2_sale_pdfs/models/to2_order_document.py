@@ -28,5 +28,4 @@ class To2OrderDocument(models.Model):
     ], string='Footer Template')
 
     def action_convert_attachment(self):
-
         self.attachment_id.pdf_resize_and_footed(self.template_id)

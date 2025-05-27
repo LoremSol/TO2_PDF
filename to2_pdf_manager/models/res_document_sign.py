@@ -1,8 +1,8 @@
 import base64, io
 from odoo import models
 from pypdf import PdfReader, PdfWriter, Transformation
-from reportlab.pdfgen import canvas
 from io import BytesIO
+import tempfile, os
 
 
 class To2PdfManagerMixin(models.AbstractModel):
@@ -110,3 +110,60 @@ class To2PdfManagerMixin(models.AbstractModel):
         output_pdf.seek(0)
 
         return base64.b64encode(output_pdf.getvalue())
+
+    # Función para obtener los adjuntos de un registro concreto.
+    def get_attachments_for_record(self, model_name, record_id):
+        if not model_name or not record_id:
+            return self.env['ir.attachment']  # Devuelve un recordset vacío
+
+        attachments = self.env['ir.attachment'].search([
+            ('res_model', '=', model_name),
+            ('res_id', '=', record_id)
+        ])
+        
+        self.merge_pdfs_and_create_attachment(attachments)
+
+    def merge_pdfs_and_create_attachment(self, attachments, filename = None):
+        """
+        Recibe una lista de registros ir.attachment,
+        genera un attachment nuevo con el PDF combinado
+        """
+        save_filename = filename + ".pdf" or "merged_document.pdf"
+        pdf_attachments = attachments.filtered(lambda a: a.mimetype == 'application/pdf')
+
+        if not pdf_attachments:
+            return False
+
+        writer = PdfWriter()
+
+        # Procesamos cada PDF y lo añadimos al nuevo mergeado
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_output:
+            for attachment in pdf_attachments:
+                pdf_bytes = base64.b64decode(attachment.datas)
+                pdf_stream = io.BytesIO(pdf_bytes)
+                reader = PdfReader(pdf_stream)
+                for page in reader.pages:
+                    writer.add_page(page)
+
+            writer.write(tmp_output)
+            tmp_output.close()
+
+            with open(tmp_output.name, "rb") as f:
+                merged_pdf = f.read()
+
+            os.unlink(tmp_output.name)
+
+        # Creamos el attachment
+        merged_attachment = self.env['ir.attachment'].create({
+            'name': save_filename,
+            'datas': base64.b64encode(merged_pdf),
+            'res_model': pdf_attachments[0].res_model,
+            'res_id': pdf_attachments[0].res_id,
+            'mimetype': 'application/pdf',
+        })
+
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/web/content/{merged_attachment.id}', #?download=true
+            'target': 'self',
+        }

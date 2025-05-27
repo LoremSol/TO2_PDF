@@ -14,17 +14,27 @@
                                 <tree editable="inline">
                                     <field name="order_id" invisible="1" readonly="1" />
                                     <field name="name" string="Document Name" />
-                                    <field name="attachment_id" string="Attachment" domain="[('res_model', '=', 'sale.order'), 
+                                    <field name="attachment_id" string="Attachment"
+                                        domain="[('res_model', '=', 'sale.order'), 
                                     ('res_id', '=', order_id), ('name', 'not ilike', '.pdf_signed')]" />
                                     <field name="template_id" string="Footer Template" />
                                     <button
                                         name="action_convert_attachment" type="object"
                                         string="Print and Save Order Report" class="btn-primary" />
-                                        
+
                                 </tree>
                             </field>
                         </div>
                     </page>
+                </xpath>
+
+                <xpath expr="//form/header" position="inside">
+                    <button name="action_merge_attachments"
+                        type="object"
+                        string="Combine PDFs"
+                        class="btn-primary"
+                        groups="base.group_no_one"
+                        context="{}" />
                 </xpath>
             </field>
         </record>

@@ -1,0 +1,20 @@
+<odoo>
+    <template id="to2_tei_report_picking_inherit" inherit_id="stock.report_picking">
+        <xpath expr="//th[@name='th_product']" position="after">
+            <th name="th_description">
+                <strong>Description</strong>
+            </th>
+        </xpath>
+
+        <xpath
+            expr="//t[@t-foreach='o.move_line_ids_without_package.sorted(lambda ml: (ml.location_id.complete_name, ml.location_dest_id.complete_name))']//tr/td[1]"
+            position="replace">
+            <td>
+                <span t-field="ml.product_id.display_name" />
+            </td>
+            <td>
+                <span t-field="ml.move_id.name" />
+            </td>
+        </xpath>
+    </template>
+</odoo>

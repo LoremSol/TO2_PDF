@@ -23,6 +23,7 @@ Módulo encargado de redefinir views de Sales para las pruebas con la generació
     # always loaded
     'data': [
         'views/stock_move_view.xml',
+        'reports/stock_picking_report.xml',
     ],
 }
 

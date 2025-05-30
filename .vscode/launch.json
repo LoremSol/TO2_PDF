@@ -8,10 +8,10 @@
             "name": "Python Debugger: Python File",
             "type": "debugpy",
             "request": "launch",
-            "program": "E:\\TiOdoo\\Odoo\\Odoo\\16\\odoo-bin",
+            "program": "C:\\Users\\minip\\OneDrive\\Desktop\\TiOdoo\\Odoo\\odoo16\\odoo-bin",
             "args": [
-                "--config=E:\\TiOdoo\\Proyectos\\v16\\TO2_PDF\\odoo16.conf",
-                "--update=to2_tei_sale_stock",
+                "--config=C:\\Users\\minip\\OneDrive\\Desktop\\TiOdoo\\Proyectos\\v16\\TO2_PDF\\odoo16.conf",
+                "--update=to2_pdf_manager, to2_tei_sale_stock",
             ],
             "console": "integratedTerminal",
         }

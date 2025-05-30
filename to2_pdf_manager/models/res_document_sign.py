@@ -128,7 +128,7 @@ class To2PdfManagerMixin(models.AbstractModel):
         Recibe una lista de registros ir.attachment,
         genera un attachment nuevo con el PDF combinado
         """
-        save_filename = filename + ".pdf" or "merged_document.pdf"
+        save_filename = f"{filename}.pdf" if filename else "merged_document.pdf"
         pdf_attachments = attachments.filtered(lambda a: a.mimetype == 'application/pdf')
 
         if not pdf_attachments:
